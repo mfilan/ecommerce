@@ -1,0 +1,86 @@
+[tool.poetry]
+name = "ecommerce"
+version = "0.0.1"
+description = ""
+authors = ["maciej.filanowicz <mfilon13@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.13"
+jupyter = "^1.0.0"
+
+[tool.poetry.group.lint.dependencies]
+mypy = "^1.8.0"
+ruff = "^0.1.11"
+
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.3"
+mkdocstrings = {extras = ["python"], version = "^0.24.0"}
+mkdocs-gen-files = "^0.5.0"
+mkdocs-literate-nav = "^0.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+builtins = 'get_ipython'
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+isort = { known-first-party = ['ecommerce'] }
+logger-objects = ["cytops.operations.utils.logging.logger"]
+unsafe-fixes = true
+preview = true
+target-version = "py310"
+ignore=["PLR6301", "D205"]
+select = [
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "W",  # pycodestyle
+    "B",  # bugbear
+    "I",  # isort
+    "RUF", # ruff
+    "UP", # pyupgrade
+    "N", # pep8-naming
+    "D", # pydocstyle
+    "T20", # flake8-print
+    "SIM", # flake8-simplify
+    "PL", # pylint
+]
+
+[tool.ruff.format]
+quote-style = 'single'
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.pylint]
+max-args = 6
+
+[tool.ruff.extend-per-file-ignores]
+"__init__.py" = ["D104"] #Missing docstring in public package
+"columns.py" = ["D100"] # Missing docstring in public module
+
+[tool.mypy]
+python_version = "3.10"
+namespace_packages = true
+install_types = true
+non_interactive = true
+no_strict_optional = true
+warn_unused_configs = true
+warn_unreachable = true
+disable_error_code = ["override", "assignment", "attr-defined", "var-annotated", "arg-type", "operator", "union-attr", "index", "return-value", "misc", "has-type"]
+show_error_codes = true
+explicit_package_bases = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = '--strict-markers'
+markers = [
+    "flaky: tests that might randomly fail (deselect via '-m \"not flaky\"')",
+    "slow: tests that run slowly (deselect via '-m \"not slow\"')"]
+filterwarnings = ["ignore:.*distutils.*:DeprecationWarning"]
