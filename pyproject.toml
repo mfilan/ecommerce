@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "3.10.13"
 jupyter = "^1.0.0"
+matplotlib = "^3.8.4"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
