@@ -50,5 +50,15 @@ class FeatureExtractionOperation(AbstractOperation):
         df_product[c.UNIQUE_PRODUCT_ID] = df_product[c.UNIQUE_PRODUCT_ID].astype(str)
         return df_product
 
+    def process_money_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        df.loc[:, c.SALES_AMOUNT_IN_EURO] = df[c.SALES_AMOUNT_IN_EURO].astype(float).apply(lambda x: max(x, 0))
+        df.loc[:, c.PRODUCT_PRICE] = df[c.PRODUCT_PRICE].apply(float)
+        return df
+
+    def calculate_day_of_campaign(self, df):
+        the_first_day_date = pd.to_datetime(df[c.DATE]).min()
+        df.loc[:, c.DAY_OF_CAMPAIGN] = df[c.DATE].apply(lambda x: (pd.to_datetime(x) - the_first_day_date).days)
+        return df
+
     def execute(self, *args: Optional[Any], **kwargs: Optional[Dict[str, Any]]) -> Any:
         raise NotImplementedError
