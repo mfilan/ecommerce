@@ -16,6 +16,7 @@ optuna = "^3.6.1"
 pyarrow = "^16.1.0"
 fastparquet = "^2024.2.0"
 optuna-integration = "^3.6.0"
+metaflow = "^2.11.15"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
