@@ -6,10 +6,16 @@ authors = ["maciej.filanowicz <mfilon13@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.10.13"
+python = "3.10.11"
 jupyter = "^1.0.0"
 matplotlib = "^3.8.4"
 featuretools = "^1.30.0"
+xgboost = "^2.0.3"
+hyperopt = "^0.2.7"
+optuna = "^3.6.1"
+pyarrow = "^16.1.0"
+fastparquet = "^2024.2.0"
+optuna-integration = "^3.6.0"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
